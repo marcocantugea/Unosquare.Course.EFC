@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WarehouseModels.Models;
 
 namespace WarehouseModels.Interfaces
 {
@@ -12,6 +13,8 @@ namespace WarehouseModels.Interfaces
         public string name { get; set; }
         public string code { get; set; }
         public bool active { get; set; }
+
+        public ICollection<Product> products { get; set; }
 
     }
 }

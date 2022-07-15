@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WarehouseCoreLib;
 
@@ -10,9 +11,10 @@ using WarehouseCoreLib;
 namespace WarehouseCoreLib.Migrations
 {
     [DbContext(typeof(DevSQLWarehouseDBContext))]
-    partial class DevSQLWarehouseDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220715173613_recreateProductsAndStores")]
+    partial class recreateProductsAndStores
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,21 +22,6 @@ namespace WarehouseCoreLib.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("ProductWarehouseInfo", b =>
-                {
-                    b.Property<int>("productsid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("warehouseInfoid")
-                        .HasColumnType("int");
-
-                    b.HasKey("productsid", "warehouseInfoid");
-
-                    b.HasIndex("warehouseInfoid");
-
-                    b.ToTable("ProductWarehouseInfo");
-                });
 
             modelBuilder.Entity("WarehouseModels.Models.Company", b =>
                 {
@@ -258,102 +245,6 @@ namespace WarehouseCoreLib.Migrations
                         });
                 });
 
-            modelBuilder.Entity("WarehouseModels.Models.ProductWarehouse", b =>
-                {
-                    b.Property<int>("productId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("warehouseId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("stock")
-                        .HasColumnType("int");
-
-                    b.HasKey("productId", "warehouseId");
-
-                    b.ToTable("ProductsWarehouses");
-
-                    b.HasData(
-                        new
-                        {
-                            productId = 0,
-                            warehouseId = 1,
-                            stock = 29
-                        },
-                        new
-                        {
-                            productId = 1,
-                            warehouseId = 1,
-                            stock = 15
-                        },
-                        new
-                        {
-                            productId = 2,
-                            warehouseId = 1,
-                            stock = 34
-                        },
-                        new
-                        {
-                            productId = 3,
-                            warehouseId = 1,
-                            stock = 29
-                        },
-                        new
-                        {
-                            productId = 4,
-                            warehouseId = 1,
-                            stock = 35
-                        },
-                        new
-                        {
-                            productId = 5,
-                            warehouseId = 1,
-                            stock = 31
-                        },
-                        new
-                        {
-                            productId = 6,
-                            warehouseId = 1,
-                            stock = 15
-                        },
-                        new
-                        {
-                            productId = 7,
-                            warehouseId = 1,
-                            stock = 22
-                        },
-                        new
-                        {
-                            productId = 8,
-                            warehouseId = 2,
-                            stock = 17
-                        },
-                        new
-                        {
-                            productId = 9,
-                            warehouseId = 1,
-                            stock = 9
-                        },
-                        new
-                        {
-                            productId = 10,
-                            warehouseId = 2,
-                            stock = 39
-                        },
-                        new
-                        {
-                            productId = 11,
-                            warehouseId = 1,
-                            stock = 13
-                        },
-                        new
-                        {
-                            productId = 12,
-                            warehouseId = 1,
-                            stock = 16
-                        });
-                });
-
             modelBuilder.Entity("WarehouseModels.Models.Store", b =>
                 {
                     b.Property<int>("Id")
@@ -432,55 +323,15 @@ namespace WarehouseCoreLib.Migrations
 
                     b.Property<string>("code")
                         .IsRequired()
-                        .HasMaxLength(5)
-                        .HasColumnType("nvarchar(5)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
 
-                    b.ToTable("WarehouseInfo");
-
-                    b.HasData(
-                        new
-                        {
-                            id = 1,
-                            active = true,
-                            code = "MWDC",
-                            name = "Monterrey Warehouse Distrubution Center"
-                        },
-                        new
-                        {
-                            id = 2,
-                            active = true,
-                            code = "MXDC",
-                            name = "Mexico Warehouse Distrubution Center"
-                        },
-                        new
-                        {
-                            id = 3,
-                            active = true,
-                            code = "GDDC",
-                            name = "Guadalajara Warehouse Distrubution Center"
-                        });
-                });
-
-            modelBuilder.Entity("ProductWarehouseInfo", b =>
-                {
-                    b.HasOne("WarehouseModels.Models.Product", null)
-                        .WithMany()
-                        .HasForeignKey("productsid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WarehouseModels.Models.WarehouseInfo", null)
-                        .WithMany()
-                        .HasForeignKey("warehouseInfoid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.ToTable("Wharehouses");
                 });
 
             modelBuilder.Entity("WarehouseModels.Models.Product", b =>

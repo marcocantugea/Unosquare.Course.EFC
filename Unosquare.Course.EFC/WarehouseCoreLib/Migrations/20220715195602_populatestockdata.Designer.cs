@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WarehouseCoreLib;
 
@@ -10,9 +11,10 @@ using WarehouseCoreLib;
 namespace WarehouseCoreLib.Migrations
 {
     [DbContext(typeof(DevSQLWarehouseDBContext))]
-    partial class DevSQLWarehouseDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220715195602_populatestockdata")]
+    partial class populatestockdata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
