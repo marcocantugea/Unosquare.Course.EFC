@@ -10,6 +10,11 @@ namespace WarehouseCoreLib.DataAccess
 {
     public class WarehouseDbContext : DbContext 
     {
+        public WarehouseDbContext() : base()
+        {
+
+        }
+
         public WarehouseDbContext(DbContextOptions<WarehouseDbContext> options) : base(options)
         {
         }
@@ -23,5 +28,6 @@ namespace WarehouseCoreLib.DataAccess
 
         public DbSet<Company> Companies { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<WarehouseInfo> Wharehouses { get; set; }
     }
 }

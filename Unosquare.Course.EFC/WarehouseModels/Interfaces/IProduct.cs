@@ -12,7 +12,7 @@ namespace WarehouseModels.Interfaces
         public string name { set; get; }
         public string description { set; get; }
         public int ageRestriction { set; get; }
-        public ICompany company { set; get; }
+        public int idCompany { set; get; }
         public float price { set; get; }
 
     }
